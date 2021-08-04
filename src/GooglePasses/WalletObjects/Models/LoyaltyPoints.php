@@ -8,11 +8,11 @@ use GooglePasses\WalletObjects\Collections\LocalizedString;
 class LoyaltyPoints extends Google_Model
 {
     public $label;
-    public $localizedLabel;
+    protected $localizedLabel;
     protected $localizedLabelType = LocalizedString::class;
     protected $localizedLabelDataType = '';
 
-    public $balance;
+    protected $balance;
     protected $balanceType = LoyaltyPointsBalance::class;
     protected $balanceDataType = '';
 

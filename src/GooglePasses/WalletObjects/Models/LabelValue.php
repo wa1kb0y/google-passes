@@ -9,7 +9,7 @@ class LabelValue extends Google_Model
 {
     public $label;
 
-    public $localizedLabel;
+    protected $localizedLabel;
     protected $localizedLabelType = LocalizedString::class;
     protected $localizedLabelDataType = '';
 

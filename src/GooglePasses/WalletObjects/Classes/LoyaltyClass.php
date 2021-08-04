@@ -37,91 +37,92 @@ class LoyaltyClass extends AbstractClass
     public $secondaryRewardsTierLabel;
     public $version;
 
-    public $callbackOptions;
+    protected $callbackOptions;
     protected $callbackOptionsType = CallbackOptions::class;
     protected $callbackOptionsDataType = '';
 
-    public $classTemplateInfo;
+    protected $classTemplateInfo;
     protected $classTemplateInfoType = ClassTemplateInfo::class;
     protected $classTemplateInfoDataType = '';
 
-    public $heroImage;
+    protected $heroImage;
     protected $heroImageType = Image::class;
     protected $heroImageDataType = '';
 
-    public $homepageUri;
+    protected $homepageUri;
     protected $homepageUriType = Uri::class;
     protected $homepageUriDataType = '';
 
-    public $imageModulesData;
+    protected $imageModulesData;
     protected $imageModulesDataType = ImageModuleData::class;
     protected $imageModulesDataDataType = 'array';
 
-    public $discoverableProgram;
+    protected $discoverableProgram;
     protected $discoverableProgramType = DiscoverableProgram::class;
     protected $discoverableProgramDataType = '';
 
-    public $infoModuleData;
+    protected $infoModuleData;
     protected $infoModuleDataType = InfoModuleData::class;
     protected $infoModuleDataDataType = '';
 
-    public $wordMark;
+    protected $wordMark;
     protected $wordMarkType = Image::class;
     protected $wordMarkDataType = '';
 
-    public $textModulesData;
+    protected $textModulesData;
     protected $textModulesDataType = TextModuleData::class;
     protected $textModulesDataDataType = 'array';
 
-    public $review;
+    protected $review;
     protected $reviewType = Review::class;
     protected $reviewDataType = '';
 
-    public $programLogo;
+    protected $programLogo;
     protected $programLogoType = Image::class;
     protected $programLogoDataType = '';
 
-    public $linksModuleData;
+    protected $linksModuleData;
     protected $linksModuleDataType = LinksModuleData::class;
     protected $linksModuleDataDataType = '';
 
-    public $localizedAccountIdLabel;
+    protected $localizedAccountIdLabel;
     protected $localizedAccountIdLabelType = LocalizedString::class;
     protected $localizedAccountIdLabelDataType = '';
 
-    public $localizedAccountNameLabel;
+
+    protected $localizedAccountNameLabel;
     protected $localizedAccountNameLabelType = LocalizedString::class;
     protected $localizedAccountNameLabelDataType = '';
 
-    public $localizedIssuerName;
+    protected $localizedIssuerName;
     protected $localizedIssuerNameType = LocalizedString::class;
     protected $localizedIssuerNameDataType = '';
 
-    public $localizedProgramName;
+    protected $localizedProgramName;
     protected $localizedProgramNameType = LocalizedString::class;
     protected $localizedProgramNameDataType = '';
 
-    public $localizedRewardsTier;
+    protected $localizedRewardsTier;
     protected $localizedRewardsTierType = LocalizedString::class;
     protected $localizedRewardsTierDataType = '';
 
-    public $localizedRewardsTierLabel;
+    protected $localizedRewardsTierLabel;
     protected $localizedRewardsTierLabelType = LocalizedString::class;
     protected $localizedRewardsTierLabelDataType = '';
 
-    public $localizedSecondaryRewardsTier;
+    protected $localizedSecondaryRewardsTier;
     protected $localizedSecondaryRewardsTierType = LocalizedString::class;
     protected $localizedSecondaryRewardsTierDataType = '';
 
-    public $localizedSecondaryRewardsTierLabel;
+    protected $localizedSecondaryRewardsTierLabel;
     protected $localizedSecondaryRewardsTierLabelType = LocalizedString::class;
     protected $localizedSecondaryRewardsTierLabelDataType = '';
 
-    public $locations;
+    protected $locations;
     protected $locationsType = LatLongPoint::class;
     protected $locationsDataType = 'array';
 
-    public $messages;
+    protected $messages;
     protected $messagesType = Message::class;
     protected $messagesDataType = 'array';
 
@@ -414,7 +415,7 @@ class LoyaltyClass extends AbstractClass
     {
         return $this->secondaryRewardsTierLabel;
     }
-    public function setTextModulesData($textModulesData)
+    public function setTextModulesData(TextModuleData $textModulesData)
     {
         $this->textModulesData = $textModulesData;
     }

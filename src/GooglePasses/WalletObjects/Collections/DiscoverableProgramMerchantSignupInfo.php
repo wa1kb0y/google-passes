@@ -7,8 +7,8 @@ use GooglePasses\WalletObjects\Models\Uri;
 class DiscoverableProgramMerchantSignupInfo extends \Google_Collection
 {
     protected $collection_key = 'signupSharedDatas';
-    public $signupSharedDatas;
-    public $signupWebsite;
+    protected $signupSharedDatas;
+    protected $signupWebsite;
     protected $signupWebsiteType = Uri::class;
     protected $signupWebsiteDataType = '';
 

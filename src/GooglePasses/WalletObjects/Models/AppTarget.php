@@ -6,7 +6,7 @@ use Google_Model;
 
 class AppTarget extends Google_Model
 {
-    public $targetUri;
+    protected $targetUri;
     protected $targetUriType = Uri::class;
     protected $targetUriDataType = '';
 

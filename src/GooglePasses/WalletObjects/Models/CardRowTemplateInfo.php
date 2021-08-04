@@ -6,15 +6,15 @@ use Google_Model;
 
 class CardRowTemplateInfo extends Google_Model
 {
-    public $oneItem;
+    protected $oneItem;
     protected $oneItemType = CardRowOneItem::class;
     protected $oneItemDataType = '';
 
-    public $threeItems;
+    protected $threeItems;
     protected $threeItemsType = CardRowThreeItems::class;
     protected $threeItemsDataType = '';
 
-    public $twoItems;
+    protected $twoItems;
     protected $twoItemsType = CardRowTwoItems::NULL_VALUE;
     protected $twoItemsDataType = '';
 

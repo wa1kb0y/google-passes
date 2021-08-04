@@ -7,19 +7,19 @@ use GooglePasses\WalletObjects\Collections\DetailsTemplateOverride;
 
 class ClassTemplateInfo extends \Google_Model
 {
-    public $cardBarcodeSectionDetails;
+    protected $cardBarcodeSectionDetails;
     protected $cardBarcodeSectionDetailsType = CardBarcodeSectionDetails::class;
     protected $cardBarcodeSectionDetailsDataType = '';
 
-    public $cardTemplateOverride;
+    protected $cardTemplateOverride;
     protected $cardTemplateOverrideType = CardTemplateOverride::class;
     protected $cardTemplateOverrideDataType = '';
 
-    public $detailsTemplateOverride;
+    protected $detailsTemplateOverride;
     protected $detailsTemplateOverrideType = DetailsTemplateOverride::NULL_VALUE;
     protected $detailsTemplateOverrideDataType = '';
 
-    public $listTemplateOverride;
+    protected $listTemplateOverride;
     protected $listTemplateOverrideType = ListTemplateOverride::class;
     protected $listTemplateOverrideDataType = '';
 

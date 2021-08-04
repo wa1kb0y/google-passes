@@ -10,7 +10,7 @@ class Uri extends \Google_Model
     public $id;
     public $kind;
     public $uri;
-    public $localizedDescription;
+    protected $localizedDescription;
     protected $localizedDescriptionType = LocalizedString::class;
     protected $localizedDescriptionDataType = '';
 

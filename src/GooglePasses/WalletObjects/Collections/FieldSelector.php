@@ -6,7 +6,7 @@ use GooglePasses\WalletObjects\Models\FieldReference;
 
 class FieldSelector extends \Google_Collection
 {
-    public $fields;
+    protected $fields;
     protected $fieldsType = FieldReference::class;
     protected $fieldsDataType = 'array';
 

@@ -6,11 +6,11 @@ use Google_Model;
 
 class CardRowTwoItems extends Google_Model
 {
-    public $endItem;
+    protected $endItem;
     protected $endItemType = TemplateItem::class;
     protected $endItemDataType = '';
 
-    public $startItem;
+    protected $startItem;
     protected $startItemType = TemplateItem::class;
     protected $startItemDataType = '';
 

@@ -6,13 +6,13 @@ use GooglePasses\WalletObjects\Collections\FieldSelector;
 
 class TemplateItem extends Google_Model
 {
-    public $firstValue;
+    protected $firstValue;
     protected $firstValueType = FieldSelector::class;
     protected $firstValueDataType = '';
 
     public $predefinedItem;
 
-    public $secondValue;
+    protected $secondValue;
     protected $secondValueType = FieldSelector::class;
     protected $secondValueDataType = '';
 

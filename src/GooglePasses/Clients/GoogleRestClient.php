@@ -7,41 +7,34 @@ use GooglePasses\Factories\ResourcesFactory;
 use GooglePasses\Helpers\Config;
 use GooglePasses\WalletObjects\Classes\LoyaltyClass;
 use GooglePasses\WalletObjects\Objects\LoyaltyObject;
-use Psr\Log\LoggerInterface;
+use GooglePasses\WalletObjects\Classes\GiftCardClass;
+use GooglePasses\WalletObjects\Objects\GiftCardObject;
 
 class GoogleRestClient
 {
-    /** @var Google_Client  */
+    const SCOPES = 'https://www.googleapis.com/auth/wallet_object.issuer';
+
     private $client;
 
-    /** @var LoggerInterface */
-    private $logger;
-
-    /** @var GoogleWalletObjectsService */
     private $service;
 
-    /** @var ResourcesFactory */
     private $resourcesFactory;
 
-    public function __construct(Config $config, LoggerInterface $logger)
-    {
+    public function __construct(Config $config) {
         $this->client = new Google_Client();
-
-        $this->logger = $logger;
 
         // do OAuth2.0 via service account file.
         // See https://developers.google.com/api-client-library/php/auth/service-accounts#authorizingrequests
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $config->getServiceAccountFilePath());
         $this->client->useApplicationDefaultCredentials();
+        // Set application name.
         $this->client->setApplicationName($config->getApplicationName());
-        $this->client->setScopes($config->getScopes());
+        // Set Api scopes.
+        $this->client->setScopes([self::SCOPES]);
 
         $this->resourcesFactory = new ResourcesFactory($this->getService());
     }
 
-    /**
-     * @return GoogleWalletObjectsService
-     */
     public function getService()
     {
         if (empty($this->service)) {
@@ -50,10 +43,6 @@ class GoogleRestClient
         return $this->service;
     }
 
-    /**
-     * @param LoyaltyClass $loyaltyClass
-     * @return array
-     */
     public function insertLoyaltyClass(LoyaltyClass $loyaltyClass)
     {
         $response = null;
@@ -63,69 +52,16 @@ class GoogleRestClient
         try {
             $response = $loyaltyResource->insert($loyaltyClass);
             $response["code"] = 200;
-        } catch (\Google_Service_Exception $gException) {
+        } catch (\Google_Service_Exception $gException)  {
             $response = $gException->getErrors();
-            $this->logger->warning((string)$gException);
             $response["code"] = $gException->getCode();
-        } catch (\Exception $e) {
-            $this->logger->error((string)$e);
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
         }
 
         return $response;
     }
 
-    /**
-     * @param LoyaltyClass $loyaltyClass
-     * @return array
-     */
-    public function patchLoyaltyClass(LoyaltyClass $loyaltyClass)
-    {
-        $response = null;
-
-        $loyaltyResource = $this->resourcesFactory->makeLoyaltyClassResource();
-
-        try {
-            $response = $loyaltyResource->patch($loyaltyClass->getId(), $loyaltyClass);
-            $response["code"] = 200;
-        } catch (\Google_Service_Exception $gException) {
-            $response = $gException->getErrors();
-            $this->logger->warning((string)$gException);
-            $response["code"] = $gException->getCode();
-        } catch (\Exception $e) {
-            $this->logger->error((string)$e);
-        }
-
-        return $response;
-    }
-
-    /**
-     * @param LoyaltyClass $loyaltyClass
-     * @return array
-     */
-    public function updateLoyaltyClass(LoyaltyClass $loyaltyClass)
-    {
-        $response = null;
-
-        $loyaltyResource = $this->resourcesFactory->makeLoyaltyClassResource();
-
-        try {
-            $response = $loyaltyResource->update($loyaltyClass->getId(), $loyaltyClass);
-            $response["code"] = 200;
-        } catch (\Google_Service_Exception $gException) {
-            $response = $gException->getErrors();
-            $this->logger->warning((string)$gException);
-            $response["code"] = $gException->getCode();
-        } catch (\Exception $e) {
-            $this->logger->error((string)$e);
-        }
-
-        return $response;
-    }
-
-    /**
-     * @param $classId
-     * @return array
-     */
     public function getLoyaltyClass($classId)
     {
         $response = null;
@@ -135,21 +71,16 @@ class GoogleRestClient
         try {
             $response = $loyaltyResource->get($classId);
             $response["code"] = 200;
-        } catch (\Google_Service_Exception $gException) {
+        } catch (\Google_Service_Exception $gException)  {
             $response = $gException->getErrors();
-            $this->logger->warning((string)$gException);
             $response["code"] = $gException->getCode();
-        } catch (\Exception $e) {
-            $this->logger->error((string)$e);
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
         }
 
         return $response;
     }
 
-    /**
-     * @param $objectId
-     * @return array
-     */
     public function getLoyaltyObject($objectId)
     {
         $response = null;
@@ -159,21 +90,16 @@ class GoogleRestClient
         try {
             $response = $loyaltyResource->get($objectId);
             $response["code"] = 200;
-        } catch (\Google_Service_Exception $gException) {
+        } catch (\Google_Service_Exception $gException)  {
             $response = $gException->getErrors();
-            $this->logger->warning((string)$gException);
             $response["code"] = $gException->getCode();
-        } catch (\Exception $e) {
-            $this->logger->error((string)$e);
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
         }
 
         return $response;
     }
 
-    /**
-     * @param LoyaltyObject $loyaltyObject
-     * @return array
-     */
     public function insertLoyaltyObject(LoyaltyObject $loyaltyObject)
     {
         $response = null;
@@ -183,12 +109,87 @@ class GoogleRestClient
         try {
             $response = $loyaltyResource->insert($loyaltyObject);
             $response["code"] = 200;
-        } catch (\Google_Service_Exception $gException) {
+        } catch (\Google_Service_Exception $gException)  {
             $response = $gException->getErrors();
-            $this->logger->warning((string)$gException);
             $response["code"] = $gException->getCode();
-        } catch (\Exception $e) {
-            $this->logger->error((string)$e);
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
+        }
+
+        return $response;
+    }
+
+    public function insertGiftCardClass(GiftCardClass $giftCardClass)
+    {
+        $response = null;
+
+        $giftCardResource = $this->resourcesFactory->makeGiftCardClassResource();
+
+        try {
+            $response = $giftCardResource->insert($giftCardClass);
+            $response["code"] = 200;
+        } catch (\Google_Service_Exception $gException)  {
+            $response = $gException->getErrors();
+            $response["code"] = $gException->getCode();
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
+        }
+
+        return $response;
+    }
+
+    public function getGiftCardClass($classId)
+    {
+        $response = null;
+
+        $giftCardResource = $this->resourcesFactory->makeGiftCardClassResource();
+
+        try {
+            $response = $giftCardResource->get($classId);
+            $response["code"] = 200;
+        } catch (\Google_Service_Exception $gException)  {
+            $response = $gException->getErrors();
+            $response["code"] = $gException->getCode();
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
+        }
+
+        return $response;
+    }
+
+    public function getGiftCardObject($objectId)
+    {
+        $response = null;
+
+        $giftCardResource = $this->resourcesFactory->makeGiftCardObjectResource();
+
+        try {
+            $response = $loyaltyResource->get($objectId);
+            $response["code"] = 200;
+        } catch (\Google_Service_Exception $gException)  {
+            $response = $gException->getErrors();
+            $response["code"] = $gException->getCode();
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
+        }
+
+        return $response;
+    }
+
+    public function insertGiftCardObject(GiftCardObject $giftCardObject)
+    {
+        $response = null;
+
+        $giftCardResource = $this->resourcesFactory->makeGiftCardObjectResource();
+
+        try {
+            $response = $giftCardResource->insert($giftCardObject);
+            $response["code"] = 200;
+        } catch (\Google_Service_Exception $gException)  {
+            $response = $gException->getErrors();
+            $response["code"] = $gException->getCode();
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
         }
 
         return $response;

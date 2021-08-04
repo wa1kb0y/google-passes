@@ -6,15 +6,15 @@ use Google_Model;
 
 class CardRowThreeItems extends Google_Model
 {
-    public $endItem;
+    protected $endItem;
     protected $endItemType = TemplateItem::class;
     protected $endItemDataType = '';
 
-    public $middleItem;
+    protected $middleItem;
     protected $middleItemType = TemplateItem::class;
     protected $middleItemDataType = '';
 
-    public $startItem;
+    protected $startItem;
     protected $startItemType = TemplateItem::class;
     protected $startItemDataType = '';
 

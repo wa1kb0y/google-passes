@@ -6,13 +6,13 @@ use Google_Model;
 
 class AppLinkData extends Google_Model
 {
-    public $androidAppLinkInfo;
+    protected $androidAppLinkInfo;
     protected $androidAppLinkInfoType = AppLinkInfo::class;
     protected $androidAppLinkInfoDataType = '';
-    public $iosAppLinkInfo;
+    protected $iosAppLinkInfo;
     protected $iosAppLinkInfoType = AppLinkInfo::class;
     protected $iosAppLinkInfoDataType = '';
-    public $webAppLinkInfo;
+    protected $webAppLinkInfo;
     protected $webAppLinkInfoType = AppLinkInfo::class;
     protected $webAppLinkInfoDataType = '';
 
